@@ -44,6 +44,9 @@
 .score_box {
     background-color: #fff;
     padding: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .frame {
