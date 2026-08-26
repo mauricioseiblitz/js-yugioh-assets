@@ -65,13 +65,13 @@ async function createCardImage(IdCard, fieldSide) {
     cardImage.setAttribute("data-id", IdCard);
     cardImage.classList.add("card");
 
-    if (fieldSide === playerSides.player1) {
+    if (fieldSide === state.playerSides.player1) {
         cardImage.addEventListener("mouseover", () => {
             drawSelectCard(IdCard);
         });
 
         cardImage.addEventListener("click", () => {
-            setCardsField(cardImage.getAtribute("data-id"));
+            setCardsField(cardImage.getAttribute("data-id"));
         });
     }
 
@@ -107,26 +107,30 @@ async function updateScore() {
      | Lose: ${state.score.computerScore}`;
 }
 
-async function checkDuelResults() {
+async function checkDuelResults(playerCardId, computerCardId) {
     let duelResults = "Empate"
     let playerCard = cardData[playerCardId];
     
-    if(playerCard.WinOf.includes(ComputerCardsId)) {
+    if(playerCard.WinOf.includes(computerCardId)) {
         duelResults = "Ganhou";
         state.score.playerScore++;
-    } else if(playerCard.LoseOf.includes(ComputerCardsId)) {
-        duelResults = "Perdeu";
-        state.scorel.computerScore++;
     }
+    
+    if(playerCard.LoseOf.includes(computerCardId)) {
+        duelResults = "Perdeu";
+        state.score.computerScore++;
+    }
+
+    return duelResults;
 }
 
 async function removeAllCardsImages() {
     let {computerBOX, player1BOX} = state.playerSides;
     let imgElements = computerBOX.querySelectorAll("img");
-    imgElements.forEach(img => img.remove());
+    imgElements.forEach((img) => img.remove());
 
     imgElements = player1BOX.querySelectorAll("img");
-    imgElements.forEach(img => img.remove());
+    imgElements.forEach((img) => img.remove());
 }
 
 async function drawSelectCard(index) {
@@ -145,8 +149,8 @@ async function drawCards(cardNumbers, fieldSide) {
 }
 
 function init() {
-    drawCards(5, playerSides.player1);
-    drawCards(5, playerSides.computer);
+    drawCards(5, state.playerSides.player1);
+    drawCards(5, state.playerSides.computer);
 }
 
 init();
