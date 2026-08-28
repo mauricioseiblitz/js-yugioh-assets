@@ -22,6 +22,9 @@ const state = {
     actions: {
         button: document.getElementById("next-duel"),
     },
+    // backgroundMusic: {
+    //     music: document.getElementById("background-music"),
+    // }
 };
 
 const pathImages = "./src/assets/icons/";
@@ -52,6 +55,10 @@ const cardData = [
         LoseOf: [1],
     },
 ];
+
+// function playMusic() {
+//     return state.backgroundMusic.music;
+// }
 
 async function getRandomCardId() {
     const randomIndex = Math.floor(Math.random() * cardData.length);
@@ -194,6 +201,9 @@ function init() {
 
     drawCards(5, state.playerSides.player1);
     drawCards(5, state.playerSides.computer);
+
+    const music = document.getElementById("background-music");
+    music.play();
 }
 
 init();

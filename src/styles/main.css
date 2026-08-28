@@ -139,7 +139,3 @@ button, a, img:hover, button:hover, a:hover {
 .card:hover {
     transform: scale(1.2);
 }
-
-.debug {
-    border: 1px solid red;
-}
