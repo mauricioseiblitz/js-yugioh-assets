@@ -103,6 +103,7 @@ button, a, img:hover, button:hover, a:hover {
 
 .versus-top, .versus-bottom {
     display: flex;
+    margin-top: 45px;
     align-items: center;
     justify-content: center;
 }
